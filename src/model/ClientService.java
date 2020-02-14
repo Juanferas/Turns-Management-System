@@ -194,7 +194,7 @@ public class ClientService {
 			if (notAttendedTurns.get(i).getTurnID()==(turnID)) {
 				notAttendedTurns.get(i).setInUse(false);
 				notAttendedTurns.get(i).getUser().setHasTurn(false);
-				notAttendedTurns.get(i).getUser().setAssignedTurn("");
+				notAttendedTurns.get(i).getUser().assignTurn("");
 				pturn = notAttendedTurns.get(i);
 				break;
 			}

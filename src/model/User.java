@@ -21,11 +21,6 @@ public class User {
 		hasTurn = false;
 	}
 
-	public void assignTurn(String turn) {
-		assignedTurn = turn;
-		hasTurn = true;
-	}
-
 	/**
 	 * @return the documentType
 	 */
@@ -116,12 +111,13 @@ public class User {
 	public String getAssignedTurn() {
 		return assignedTurn;
 	}
-
+	
 	/**
-	 * @param assignedTurn the assignedTurn to set
+	 * @param turn the turnID to set
 	 */
-	public void setAssignedTurn(String assignedTurn) {
-		this.assignedTurn = assignedTurn;
+	public void assignTurn(String turn) {
+		assignedTurn = turn;
+		hasTurn = true;
 	}
 
 	/**
