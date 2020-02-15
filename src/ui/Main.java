@@ -44,6 +44,11 @@ public class Main {
 		}
 	}
 
+	/**
+	 * This method asks for the attributes of an user in order to send them to the "registerUser" method in ClientService class.
+	 * <b>pre:</b> An object of type Main has already been created, as well as the "registerUser" method in ClientService class.
+     * <b>post:</b> The information typed by the user has been correctly passed to the method in ClientService class.
+	 */
 	public void registerUser() {
 		System.out.println("\nPlease fill in the next form, the fields marked with an asterisk (*) are mandatory.\n");
 		System.out.println("Document type*:\n[1] Citizenship card.\n[2] Identity card.\n[3] Civil registration.\n[4] Passport.\n[5] Foreign identity card.");
@@ -96,6 +101,11 @@ public class Main {
 		System.out.println("<<User registered succesfully>>");
 	}
 
+	/**
+	 * This method ask for the document number of an user in order to register him a turn.
+	 * <b>pre:</b> An object of type Main has already been created, as well as the "assignTurn" method in ClientService class.
+     * <b>post:</b> A turn has been assigned to the user with the entered document number.
+	 */
 	public void registerTurn () {
 		System.out.print("\nDocument number: ");
 		String documentNumber = sc.nextLine();
@@ -123,6 +133,11 @@ public class Main {
 		}
 	}
 	
+	/**
+	 * This method gets the actual turn and asks for what to do with it.
+	 * <b>pre:</b> An object of type Main has already been created, as well as the "endTurn" method in ClientService class.
+     * <b>post:</b> The option selected by the user works correctly when executed in the method in ClientService class.
+	 */
 	public void attendTurn() {
 		String turnID = service.getActualTurn();
 		if (turnID.length()>3) {

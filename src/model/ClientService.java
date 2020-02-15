@@ -104,6 +104,14 @@ public class ClientService {
 		this.notAttendedTurns = notAttendedTurns;
 	}
 
+	/**
+	 * This method receives a document number to verify if its exists in the system.
+	 * <b>pre:</b> An ArrayList that stores the users in the system has already been created.
+	 * <b>post:</b> It is known if the document number is repeated or not.
+	 * @param documentNumber is a String that corresponds to the document number to verify.
+	 * @return String that indicates if the document number is accepted or not.
+	 * @throws RepeatedDocumentException
+	 */
 	public String verifyID(String documentNumber) throws RepeatedDocumentException{
         for (int i = 0; i<users.size(); i++) {
 			if (users.get(i).getDocumentNumber().equals(documentNumber)) {
@@ -113,6 +121,17 @@ public class ClientService {
 		return "ok";
     }
 
+	/**
+	 * This method receives the attributes of an user in order to register it in the system.
+	 * <b>pre:</b> An ArrayList that stores the users in the system has already been created.
+	 * <b>post:</b> A new user has been created and added to the system.
+	 * @param documentType is a String that corresponds to the document type of the user to add.
+	 * @param documentNumber is a String that corresponds to the document number to verify.
+	 * @param name is a String that corresponds to the name of the user to add.
+	 * @param lastNames is a String that corresponds to the last names of the user to add.
+	 * @param phone is a String that corresponds to the phone of the user to add.
+	 * @param address is a String that corresponds to the address of the user to add.
+	 */
     public void registerUser(String documentType, String documentNumber, String name, String lastNames, String phone, String address) {
         if (phone.equals(""))
             phone = "Not given";
@@ -121,6 +140,14 @@ public class ClientService {
         users.add(new User(documentType, documentNumber, name, lastNames, phone, address));
     }
 
+    /**
+     * This method receives the id of an user in order to search it in the system and return its info.
+     * <b>pre:</b> An ArrayList that stores the users in the system has already been created.
+	 * <b>post:</b> The information of the desired user is returned in a String.
+     * @param id is a String that correspond to the user id to search.
+     * @return String with the information of the found user.
+     * @throws UserNotFoundException
+     */
 	public String findUser(String id) throws UserNotFoundException{
 		String userFound = "";
 		for (int i = 0; i < users.size(); i++) {
@@ -136,6 +163,14 @@ public class ClientService {
 		}
 	}
 
+	/**
+	 * This method receives the id of an user in order to register him a turn.
+     * <b>pre:</b> An ArrayList that stores the users in the system has already been created.
+	 * <b>post:</b> Next turn available is correctly assigned to the desired user.
+	 * @param id is a String that correspond to the user id to register a turn.
+	 * @return String indicating that the turn has been correctly assigned and its number.
+	 * @throws UserAlreadyHasTurnException
+	 */
     public String assignTurn(String id) throws UserAlreadyHasTurnException{
 		String turn = "";
 		for (int i = 0; i < users.size(); i++) {
@@ -153,6 +188,12 @@ public class ClientService {
 		return "<<Turn assigned correctly ["+turn+"]>>";
 	}
 
+    /**
+     * This method generates the number of the next turn available and returns it.
+     * <b>pre:</b> Global variables num (turn's number) and letter (turn's letter) have already been created.
+	 * <b>post:</b> Next turn available is correctly generated and returned.
+     * @return Next turn available.
+     */
 	public String nextTurn() {
 		String turn = "";
 		num ++;
@@ -175,6 +216,12 @@ public class ClientService {
 		return turn;
 	}
 	
+	/**
+	 * This method finds the actual turn to attend and returns it.
+	 * <b>pre:</b> An ArrayList that stores the actual turns has already been created.
+	 * <b>post:</b> It is know which is the actual turn to attend.
+	 * @return actual turn to attend.
+	 */
 	public String getActualTurn() {
 		String turnID = "";
 		if (actualTurns.size()==0) {
@@ -188,6 +235,13 @@ public class ClientService {
 		return turnID;
 	}
 	
+	/**
+	 * This method ends a turn and places it where it corresponds.
+	 * <b>pre:</b> ArrayLists that stores the attended turns and not attended turns have already been created.
+	 * <b>post:</b> A given turn is ended and placed where it corresponds.
+	 * @param op is an int that corresponds to the option chose by the user.
+	 * @param turnID is a String that corresponds to the turn id to end.
+	 */
 	public void endTurn(int op, String turnID) {
 		Turn pturn = null;
 		for (int i=0; i<notAttendedTurns.size(); i++) {
