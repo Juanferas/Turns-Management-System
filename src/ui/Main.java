@@ -23,6 +23,10 @@ public class Main {
 				while (!endWhile) {
 					System.out.println("\n-------MENU-------\n[1] Add User.\n[2] Register turn.\n[3] Attend turn.\n[4] Exit.");
 					int op = Integer.valueOf(obj.sc.nextLine());
+					if(op!=1 && op!=2 && op!=3 && op!=4) {
+						System.out.println("<<Invalid Input. Please try Again>>");
+						continue;
+					}
 					switch (op) {
 						case 1:
 							obj.registerUser();
@@ -116,7 +120,13 @@ public class Main {
 				try {
 					System.out.println("\n[1] Register turn.\n[2] Go back.");
 					op = Integer.valueOf(sc.nextLine());
-					break;
+					if(op!=1 && op!=2) {
+						System.out.println("<<Invalid Input. Please try Again>>");
+						continue;
+					}
+					else {
+						break;
+					}
 				} catch (NumberFormatException nfe) {
 					System.out.println("<<Invalid Input. Please try Again>>");
 				}
@@ -148,8 +158,14 @@ public class Main {
 				try {
 					System.out.println("\nActual turn: "+turnID+"\n[1]Turn attended.\n[2]User not present.");
 					int op = Integer.valueOf(sc.nextLine());
-					service.endTurn(op, turnID);
-					break;
+					if(op!=1 && op!=2) {
+						System.out.println("<<Invalid Input. Please try Again>>");
+						continue;
+					}
+					else {
+						service.endTurn(op, turnID);
+						break;
+					}
 				} catch (NumberFormatException nfe) {
 					System.out.println("<<Invalid Input. Please try Again>>");
 				}
